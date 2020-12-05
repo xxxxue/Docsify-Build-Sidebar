@@ -26,8 +26,8 @@
 
 # 赞赏
 
-![](README.assets/aliPay.png)
+![aliPay](README.assets/aliPay.png)
 
 
 
-![](README.assets/wxPay.png)
+![wxPay](README.assets/wxPay.png)
