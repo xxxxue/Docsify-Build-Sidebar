@@ -1,10 +1,10 @@
-# DocsifyBuildSidebar For C#
+# 🐵 DocsifyBuildSidebar For C#
 
 自动生成 docsify 的 sidebar
 
 [Docsify官网](https://docsify.js.org/#/zh-cn/)
 
-[演示地址](http://huyd5x.coding-pages.com/#/)
+[😃演示地址](http://huyd5x.coding-pages.com/#/)
 
 ![image-20201205215010061](README.assets/image-20201205215010061.png)
 
