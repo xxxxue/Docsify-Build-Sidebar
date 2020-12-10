@@ -78,6 +78,135 @@ n级子目录
 
 
 
+# index.html 模版
+
+```html
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css" />
+
+    <!-- 文件夹样式 -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
+    <!-- 箭头样式 -->
+    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> -->
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>  
+      window.$docsify = {
+        name: "Blog",
+        // 侧边栏文档目录
+        loadSidebar: true,
+
+        subMaxLevel: 2,
+        alias: {
+          "/.*/_sidebar.md": "/_sidebar.md",
+        },
+        // 跳转后自动到顶部
+        auto2top: true,
+
+        coverpage: true,
+        // PLUGINS
+        // ----------------------------------------------------------------
+        // 页面右侧toc
+        toc: {
+          tocMaxLevel: 2,
+          target: "h2, h3, h4, h5, h6",
+        },
+
+        // 全文搜索
+        search: {
+          depth: 6,
+          noData: "没有搜到!",
+          placeholder: "搜索...",
+          // 避免搜索索引冲突,同一域下的多个网站之间
+          namespace: "website-1",
+        },
+        // 底部导航
+        pagination: {
+          previousText: "上一页",
+          nextText: "下一页",
+          crossChapter: true,
+          crossChapterText: true,
+        },
+        // 字数统计
+        count: {
+          countable: true,
+          position: "top",
+          margin: "10px",
+          float: "right",
+          fontsize: "0.9em",
+          color: "red",
+          language: "chinese",
+          localization: {
+            words: "",
+            minute: "",
+          },
+          isExpected: true,
+        },
+      };
+    </script>
+    <!-- docsify -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>  
+
+    <!-- 代码高亮  https://cdn.jsdelivr.net/npm/prismjs@1/components/ -->
+	
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>	
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cmake.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>     
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-docker.min.js"></script>  
+	<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>  
+
+
+    <!-- 多tab支持 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1/dist/docsify-tabs.min.js"></script>
+
+    <!-- 代码复制 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2/dist/docsify-copy-code.min.js"></script>
+
+    <!-- 底部 上一页下一页 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/external-script.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/ga.min.js"></script>
+
+    <!-- 全文搜索 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+
+    <!-- 图片放大缩小 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+
+    <!-- 字数统计 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
+
+    <!-- 侧边栏目录折叠 -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+
+    <!-- 页面右侧 TOC -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-toc@1.1.0/dist/docsify-plugin-toc.min.js"></script>
+
+      <!-- emoji -->
+      <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  </body>
+</html>
+
+```
+
+
+
+
+
+
+
 ## 开发环境
 
 > .Net5
