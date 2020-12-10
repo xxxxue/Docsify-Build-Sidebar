@@ -102,9 +102,7 @@ namespace DocsifyBuildSidebar
             var homeData = Entry(_homePath, true);
 
             // Console.WriteLine($"home menu :\n{homeData}");
-
-            File.WriteAllText(_homePath + "\\" + _sidebarFileName, homeData);
-            File.WriteAllText(_homePath + "\\" + _readmeFileName, homeData);
+            WriteDataToFile(_homePath, homeData);           
             Utils.WriteLogMessage("[home] Done!");
 
             // 生成 子目录的 侧边栏
@@ -123,12 +121,24 @@ namespace DocsifyBuildSidebar
                 {
                     includeData = $"- [返回上一级 [{parentDir.Name}]]({parentDir.GetDirRelativePath()})\n" + includeData;
                 }
-
-                File.WriteAllText(item + "\\" + _sidebarFileName, includeData);
-                File.WriteAllText(item + "\\" + _readmeFileName, includeData);
+                WriteDataToFile(item, includeData);               
                 //Console.WriteLine($"child menu :\n{includeData}");
 
             }
+        }
+
+        /// <summary>
+        /// 将 数据 写入文件
+        /// </summary>
+        /// <param name="homePath"></param>
+        /// <param name="data"></param>
+        private static void WriteDataToFile(string homePath, string data)
+        {
+            string sidebarPath = Path.Combine(homePath, _sidebarFileName);
+            string readmePath = Path.Combine(homePath, _readmeFileName);
+
+            File.WriteAllText(sidebarPath, data);
+            File.WriteAllText(readmePath, data);
         }
 
         private static void Init()
