@@ -4,9 +4,6 @@
 
 [Docsify官网](https://docsify.js.org/#/zh-cn/)
 
-[😃演示地址](http://huyd5x.coding-pages.com/#/)
-
-
 
 > **使用方法( 任选其一):** 
 >
