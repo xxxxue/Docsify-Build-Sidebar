@@ -4,6 +4,16 @@
 
 [Docsify官网](https://docsify.js.org/#/zh-cn/)
 
+```
+用golang复刻的源码
+https://github.com/xxxxue/GoBuildDocsifySidebar
+Releases中文件支持 3大主流平台
+```
+
+
+
+
+
 
 > **使用方法( 任选其一):** 
 >
@@ -11,8 +21,6 @@
 >
 > 2. 自己运行源代码
 > 3. 自己编译
-
-
 
 首页效果
 
@@ -71,8 +79,6 @@ n级子目录
   - [1](C_Sharp/TestPaper/1.md)
   - [2](C_Sharp/TestPaper/2.md)
 ```
-
-
 
 
 
