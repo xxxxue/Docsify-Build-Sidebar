@@ -7,18 +7,13 @@
 ```
 用golang复刻的源码
 https://github.com/xxxxue/GoBuildDocsifySidebar
-Releases中文件支持 3大主流平台
+Releases中文件支持 3大主流平台, golang可执行文件较小,方便下载.
 ```
-
-
-
-
 
 
 > **使用方法( 任选其一):** 
 >
-> 1. 在 "Releases" 中下载可执行文件 
->
+> 1. 在github页面右侧的"Releases" 中下载可执行文件,直接运行
 > 2. 自己运行源代码
 > 3. 自己编译
 
@@ -80,14 +75,9 @@ n级子目录
   - [2](C_Sharp/TestPaper/2.md)
 ```
 
-
-
 ![image-20201205215010061](img.assets/image-20201205215010061.png)
 
 ![image-20201205215133835](img.assets/image-20201205215133835.png)
-
-
-
 
 
 # docsify index.html 模版
