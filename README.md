@@ -82,9 +82,9 @@ n级子目录
 
 
 
-![image-20201205215010061](README.assets/image-20201205215010061.png)
+![image-20201205215010061](img.assets/image-20201205215010061.png)
 
-![image-20201205215133835](README.assets/image-20201205215133835.png)
+![image-20201205215133835](img.assets/image-20201205215133835.png)
 
 
 
@@ -215,10 +215,6 @@ n级子目录
 
 
 
-
-
-
-
 ## 开发环境
 
 > .Net5
@@ -229,10 +225,7 @@ n级子目录
 
 > QQ: 1659809758
 
-# 赞赏
+# 支持作者
 
-![aliPay](README.assets/aliPay.png)
+![pay](img.assets/pay.png)
 
-
-
-![wxPay](README.assets/wxPay.png)
