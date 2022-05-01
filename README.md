@@ -4,20 +4,30 @@
 
 [Docsify官网](https://docsify.js.org/#/zh-cn/)
 
+
+
 ```
 用golang复刻的源码
 https://github.com/xxxxue/GoBuildDocsifySidebar
 Releases中文件支持 3大主流平台, golang可执行文件较小,方便下载.
 ```
 
+# 网站的部署
+- Vercel (免费全自动部署): 直接关联github私有/公有仓库,nodejs那几个命令不用填, 直接部署即可,3秒即可成功.每次提交代码,Vercel都会自动部署.
+- Github Page: 国内访问太慢了.
+- Gitee Pages (码云) : 比较辣鸡,白嫖党需要每次手动点击更新. 而且还有违禁违规内容审查, 我笔记里的汇编代码 被认为是违规内容??? 不让我部署.总不能把笔记删掉吧,后来就一直没有部署.都是本地去查看,再后来我发现了Vercel, 用过后只想说 Vercel YYDS !
 
-> **使用方法( 任选其一):** 
+#  使用方法:
 >
-> 1. 在github页面右侧的"Releases" 中下载可执行文件,直接运行
-> 2. 自己运行源代码
-> 3. 自己编译
+> 1. 在github页面右侧的"Releases" 中下载编译好的软件
+> 2. 修改Config中的项目目录为 `自己电脑上的目标根目录`
+> 3. 双击exe,执行即可, 程序会自动到这个根目录和子目录找md文件,生成侧边栏
 
-首页效果
+# 小技巧:
+可以右键单击exe,创建一个 快捷方式, 把这个`快捷方式`粘贴到自己的项目根目录,之后就不用每次都去找 exe 文件了
+
+
+# 首页效果
 
 ```markdown
 - [C_Sharp](C_Sharp/)
@@ -50,7 +60,7 @@ Releases中文件支持 3大主流平台, golang可执行文件较小,方便下�
 
 ```
 
-1级子目录
+# 1级子目录
 
 ```markdown
 - [返回首页](/)
@@ -66,7 +76,7 @@ Releases中文件支持 3大主流平台, golang可执行文件较小,方便下�
   - [Utils](C_Sharp/Utils.md)
 ```
 
-n级子目录
+## n级子目录
 
 ```markdown
 - [返回上一级 [C_Sharp]](C_Sharp/)
@@ -207,9 +217,9 @@ n级子目录
 
 ## 开发环境
 
-> .Net5
+> .Net6
 >
-> VS2019
+> VS2022
 
 # 联系方式
 
