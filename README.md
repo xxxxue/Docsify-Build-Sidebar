@@ -4,8 +4,6 @@
 
 [Docsify官网](https://docsify.js.org/#/zh-cn/)
 
-
-
 ```
 用golang复刻的源码
 https://github.com/xxxxue/GoBuildDocsifySidebar
@@ -31,20 +29,20 @@ Releases中文件支持 3大主流平台, golang可执行文件较小,方便下�
 
 ```markdown
 - [C_Sharp](C_Sharp/)
+  - [TestPaper](C_Sharp/TestPaper/)
+    - [1](C_Sharp/TestPaper/1.md)
+    - [2](C_Sharp/TestPaper/2.md)
   - [Docker](C_Sharp/Docker.md)
   - [EFCore](C_Sharp/EFCore.md)
   - [Furion](C_Sharp/Furion.md)
   - [RX](C_Sharp/RX.md)
   - [SpectreConsole](C_Sharp/SpectreConsole.md)
-  - [TestPaper](C_Sharp/TestPaper/)
-    - [1](C_Sharp/TestPaper/1.md)
-    - [2](C_Sharp/TestPaper/2.md)
   - [Utils](C_Sharp/Utils.md)
 - [Java](Java/)
   - [Github](Java/Github.md)
 - [JavaScript](JavaScript/)
   - [AutoJs](JavaScript/AutoJs/)
-    - [js链式调用undefined防止抛出异常](JavaScript/AutoJs/js链式调用undefined防止抛出异常.md)
+    - [code](JavaScript/AutoJs/code.md)
     - [test1](JavaScript/AutoJs/test1/)
       - [te](JavaScript/AutoJs/test1/te.md)
       - [test2](JavaScript/AutoJs/test1/test2/)
@@ -53,11 +51,6 @@ Releases中文件支持 3大主流平台, golang可执行文件较小,方便下�
   - [Github](JavaScript/Github.md)
 - [Ubuntu](Ubuntu/)
   - [Commands](Ubuntu/Commands.md)
-- [YuanShen](YuanShen/)
-  - [Material](YuanShen/Material.md)
-  - [WorldResources](YuanShen/WorldResources/)
-    - [BiliBili](YuanShen/WorldResources/BiliBili.md)
-
 ```
 
 # 1级子目录
@@ -65,14 +58,14 @@ Releases中文件支持 3大主流平台, golang可执行文件较小,方便下�
 ```markdown
 - [返回首页](/)
 - [C_Sharp](C_Sharp/)
+  - [TestPaper](C_Sharp/TestPaper/)
+    - [1](C_Sharp/TestPaper/1.md)
+    - [2](C_Sharp/TestPaper/2.md)
   - [Docker](C_Sharp/Docker.md)
   - [EFCore](C_Sharp/EFCore.md)
   - [Furion](C_Sharp/Furion.md)
   - [RX](C_Sharp/RX.md)
   - [SpectreConsole](C_Sharp/SpectreConsole.md)
-  - [TestPaper](C_Sharp/TestPaper/)
-    - [1](C_Sharp/TestPaper/1.md)
-    - [2](C_Sharp/TestPaper/2.md)
   - [Utils](C_Sharp/Utils.md)
 ```
 
@@ -85,10 +78,9 @@ Releases中文件支持 3大主流平台, golang可执行文件较小,方便下�
   - [2](C_Sharp/TestPaper/2.md)
 ```
 
-![image-20201205215010061](img.assets/image-20201205215010061.png)
+# 界面效果
 
-![image-20201205215133835](img.assets/image-20201205215133835.png)
-
+![image-20220501150050290](img.assets/image-20220501150050290.png)
 
 # docsify index.html 模版
 
