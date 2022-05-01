@@ -41,6 +41,11 @@ namespace DocsifyBuildSidebar
         /// </summary>
         private static int _level = 0;
 
+        /// <summary>
+        /// 不符合规则的文件 (发出警告)
+        /// </summary>
+        private static List<string> _warnFileList = new List<string>();
+
         private static string Entry(string rootPath, bool isHome = false)
         {
 
@@ -59,6 +64,29 @@ namespace DocsifyBuildSidebar
             }
             // 获取目录中所有的文件夹和文件
             var fileList = Directory.EnumerateFileSystemEntries(rootPath).ToList();
+
+            // 对文件夹与文件进行排序
+            var sortFileList = new List<string>();
+            var sortDirList = new List<string>();
+
+            foreach (var item in fileList)
+            {
+                if (Utils.IsFile(item))
+                {
+                    sortFileList.Add(item);
+                }
+                else if (Utils.IsDir(item))
+                {
+                    sortDirList.Add(item);
+                }
+
+            }
+            fileList.Clear();
+            // 先放入 文件夹, 再放入 文件
+            fileList.AddRange(sortDirList);
+            fileList.AddRange(sortFileList);
+
+            // 开始处理
             foreach (var item in fileList)
             {
                 if (Utils.IsFile(item))
@@ -66,11 +94,20 @@ namespace DocsifyBuildSidebar
                     // 文件处理
                     var file = new FileInfo(item);
 
-                    // 判断扩展名 && 检查忽略
-                    if (file.Extension == ".md" && !_ignoreFileList.Contains(file.Name))
+                    if (file.Extension != ".md")
                     {
-                        sidebarData += $"{Utils.GenerateSpace(_level)}- [{file.GetFileNameWithoutExtension()}]({Utils.ReplaceSpace(file.GetFileRelativePath())})\n";
+                        _warnFileList.Add(item);
+                        continue;
                     }
+
+                    if (_ignoreFileList.Contains(file.Name))
+                    {
+                        continue;
+                    }
+
+
+                    sidebarData += $"{Utils.GenerateSpace(_level)}- [{file.GetFileNameWithoutExtension()}]({Utils.ReplaceSpace(file.GetFileRelativePath())})\n";
+
                 }
                 else if (Utils.IsDir(item))
                 {
@@ -86,7 +123,7 @@ namespace DocsifyBuildSidebar
                         }
 
                         sidebarData += Entry(dir.FullName, isHome);
-                        Utils.WriteLogMessage($"[{dir.Name}] Done!");
+                        Utils.WriteLogMessage($"[{dir.Name}] --- Done!");
                         _level--;
                     }
                 }
@@ -102,8 +139,8 @@ namespace DocsifyBuildSidebar
             var homeData = Entry(_homePath, true);
 
             // Console.WriteLine($"home menu :\n{homeData}");
-            WriteDataToFile(_homePath, homeData);           
-            Utils.WriteLogMessage("[home] Done!");
+            WriteDataToFile(_homePath, homeData);
+            //Utils.WriteLogMessage("[home] Done!");
 
             // 生成 子目录的 侧边栏
             foreach (var item in _includeDirList)
@@ -121,7 +158,7 @@ namespace DocsifyBuildSidebar
                 {
                     includeData = $"- [返回上一级 [{parentDir.Name}]]({parentDir.GetDirRelativePath()})\n" + includeData;
                 }
-                WriteDataToFile(item, includeData);               
+                WriteDataToFile(item, includeData);
                 //Console.WriteLine($"child menu :\n{includeData}");
 
             }
@@ -156,9 +193,23 @@ namespace DocsifyBuildSidebar
 
             Utils.WriteLogMessage("HomePath: " + _homePath);
             AnsiConsole.MarkupLine("[yellow]ReadConfig Done![/]");
-            AnsiConsole.WriteLine();
+            Utils.WriteDivider();
+
         }
 
+        private static void ShowWarnFileList()
+        {
+            if (_warnFileList.Count > 0)
+            {
+                Utils.WriteDivider();
+                AnsiConsole.MarkupLine($"[yellow]Excluded files:[/]");
+                Console.WriteLine("-");
+            }
+            foreach (var item in _warnFileList)
+            {
+                AnsiConsole.MarkupLine($"[yellow]{item}[/]");
+            }
+        }
         private static void Main(string[] args)
         {
             try
@@ -167,7 +218,12 @@ namespace DocsifyBuildSidebar
                 AnsiConsole.MarkupLine("[yellow]Initializing sidebar[/]...");
                 Init();
                 Build();
-                AnsiConsole.MarkupLine("[green]Done![/]");
+                
+                ShowWarnFileList();
+                Utils.WriteDivider();
+
+                AnsiConsole.MarkupLine($"○ [green]{_homePath} ->>> Done![/]");
+                Utils.WriteDivider();
                 Console.ReadLine();
             }
             catch (Exception e)

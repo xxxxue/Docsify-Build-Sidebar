@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.RegularExpressions;
 
 using Spectre.Console;
@@ -116,6 +117,14 @@ namespace DocsifyBuildSidebar
         public static void WriteLogMessage(string message)
         {
             AnsiConsole.MarkupLine("[grey]LOG:[/]{0}", Markup.Escape(message));
+        }
+
+        /// <summary>
+        /// 输出分割线
+        /// </summary>
+        public static void WriteDivider()
+        {
+            Console.WriteLine("-----------------------------");
         }
 
         /// <summary>
