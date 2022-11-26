@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 using Spectre.Console;
 
@@ -169,8 +168,6 @@ namespace DocsifyBuildSidebar
             File.WriteAllText(readmePath, data);
         }
 
-
-
         private static void Init()
         {
             AnsiConsole.MarkupLine("[yellow]Start ReadConfig...[/]");
@@ -239,5 +236,4 @@ namespace DocsifyBuildSidebar
             }
         }
     }
-
 }
