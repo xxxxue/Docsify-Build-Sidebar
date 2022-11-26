@@ -23,9 +23,9 @@ Releases中文件支持 3大主流平台, golang可执行文件较小,方便下�
 
 #  使用方法:
 >
-> 1. 在github页面右侧的"Releases" 中下载编译好的软件
-> 2. 修改Config中的`HomePath`为 `自己电脑上的目标根目录`
-> 3. 双击exe执行
+> 1. 在 github 页面右侧的 "Releases" 中下载编译好的软件
+> 2. 修改 Config 中的 `HomePath` 为 `自己电脑上的目标根目录`
+> 3. 双击 exe 执行
 
 # 小技巧:
 可以右键单击exe,创建一个 快捷方式, 
@@ -33,6 +33,18 @@ Releases中文件支持 3大主流平台, golang可执行文件较小,方便下�
 把这个`快捷方式`剪切到自己的项目根目录,
 
 以后就不用每次都去找 exe 了
+
+
+
+# Config.json 配置项
+
+| 名词                 | 说明                                       | 例子                       |
+| -------------------- | ------------------------------------------ | -------------------------- |
+| HomePath             | Docsify 项目的根目录                       | `E:\\Work\\coding\\xxxue`  |
+| IgnoreFile           | 忽略的文件 (判断规则: 相等)                | `Readme.md`                |
+| IgnoreDir            | 忽略的目录 (判断规则: 相等)                | `.git`                     |
+| IgnoreDirNameContain | 忽略的目录 (判断规则:目录名称任意位置包含) | `.assets` 匹配 `*.assets*` |
+
 
 
 # 首页效果

@@ -138,13 +138,13 @@ namespace DocsifyBuildSidebar
             var logo = new FigletText("build sidebar")
                 .LeftAligned()
                 .Color(Color.Yellow);
-            AnsiConsole.Render(logo);
+            AnsiConsole.Write(logo);
 
             var rule = new Rule("[red]build sidebar for c#[/]");
             rule.Alignment = Justify.Center;
             rule.Style = Style.Parse("red dim");
 
-            AnsiConsole.Render(rule);
+            AnsiConsole.Write(rule);
         }
     }
 }
