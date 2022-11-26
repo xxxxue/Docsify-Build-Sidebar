@@ -2,13 +2,16 @@
 
 自动生成 docsify 的 sidebar  和 每个子目录中的 sidebar
 
-[Docsify官网](https://docsify.js.org/#/zh-cn/)
+[Docsify 官网](https://docsify.js.org/#/zh-cn/)
 
-```
-用golang复刻的源码
-https://github.com/xxxxue/GoBuildDocsifySidebar
-Releases中文件支持 3大主流平台, golang可执行文件较小,方便下载.
-```
+
+## 其他语言
+用 go 复刻的源码👉 [xxxxue/GoBuildDocsifySidebar](https://github.com/xxxxue/GoBuildDocsifySidebar)
+
+~~Releases 中文件支持 3大主流平台, golang 可执行文件较小,方便下载.~~ 
+
+( 仅供学习, go 太难用,再也不想写 go 了 )
+
 
 # 网站的部署
 - Vercel (免费全自动部署): 直接关联github私有/公有仓库,nodejs那几个命令不用填, 直接部署即可,3秒即可成功.每次提交代码,Vercel都会自动部署.
@@ -28,7 +31,7 @@ Releases中文件支持 3大主流平台, golang可执行文件较小,方便下�
 > 3. 双击 exe 执行
 
 # 小技巧:
-可以右键单击exe,创建一个 快捷方式, 
+可以右键单击 exe ,创建一个 快捷方式, 
 
 把这个`快捷方式`剪切到自己的项目根目录,
 
@@ -38,12 +41,12 @@ Releases中文件支持 3大主流平台, golang可执行文件较小,方便下�
 
 # Config.json 配置项
 
-| 名词                 | 说明                                       | 例子                       |
-| -------------------- | ------------------------------------------ | -------------------------- |
-| HomePath             | Docsify 项目的根目录                       | `E:\\Work\\coding\\xxxue`  |
-| IgnoreFile           | 忽略的文件 (判断规则: 相等)                | `Readme.md`                |
-| IgnoreDir            | 忽略的目录 (判断规则: 相等)                | `.git`                     |
-| IgnoreDirNameContain | 忽略的目录 (判断规则:目录名称任意位置包含) | `.assets` 匹配 `*.assets*` |
+| 名称                 | 说明                                        | 例子                       |
+| -------------------- | ------------------------------------------- | -------------------------- |
+| HomePath             | Docsify 项目的根目录                        | `E:\\Work\\coding\\xxxue`  |
+| IgnoreFile           | 忽略的文件 (判断规则: 相等)                 | `Readme.md`                |
+| IgnoreDir            | 忽略的目录 (判断规则: 相等)                 | `.git`                     |
+| IgnoreDirNameContain | 忽略的目录 (判断规则: 目录名称任意位置包含) | `.assets` 匹配 `*.assets*` |
 
 
 
