@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 using Spectre.Console;
 
@@ -18,23 +15,24 @@ namespace DocsifyBuildSidebar
         private static string _sidebarFileName = "_sidebar.md";
         private static string _readmeFileName = "README.md";
         private static string _jsonConfigPath = "./Config/Config.json";
-        private static List<string> _ignoreDirList = new List<string>(){
-            ".git", //git目录
-            };
 
-        private static List<string> _ignoreFileList = new List<string>(){
+        // 规则: 全名相等
+        private static List<string> _ignoreFileList = new()
+        {
             "_sidebar.md", // 侧边栏文件
-            "README.md",//侧边栏文件
-            };
+            "README.md" //侧边栏文件
+        };
 
-        private static List<string> _ignoreStringList = new List<string>(){
-            ".assets" //Typora软件 存放图片的目录 *.assets
-            };
+        // 规则: 全名相等
+        private static List<string> _ignoreDirList = new();
+
+        // 规则: 名称包含
+        private static List<string> _ignoreDirNameContainList = new();
 
         /// <summary>
         /// 记录包含的子目录, 在这些目录中生成侧边栏文件
         /// </summary>
-        private static List<string> _includeDirList = new List<string>();
+        private static List<string> _includeDirList = new();
 
         /// <summary>
         /// 文档目录级别
@@ -44,11 +42,10 @@ namespace DocsifyBuildSidebar
         /// <summary>
         /// 不符合规则的文件 (发出警告)
         /// </summary>
-        private static List<string> _warnFileList = new List<string>();
+        private static List<string> _warnFileList = new();
 
         private static string Entry(string rootPath, bool isHome = false)
         {
-
             var rootDir = new DirectoryInfo(rootPath);
             var sidebarData = string.Empty;
 
@@ -79,7 +76,6 @@ namespace DocsifyBuildSidebar
                 {
                     sortDirList.Add(item);
                 }
-
             }
             fileList.Clear();
             // 先放入 文件夹, 再放入 文件
@@ -105,16 +101,14 @@ namespace DocsifyBuildSidebar
                         continue;
                     }
 
-
                     sidebarData += $"{Utils.GenerateSpace(_level)}- [{file.GetFileNameWithoutExtension()}]({Utils.ReplaceSpace(file.GetFileRelativePath())})\n";
-
                 }
                 else if (Utils.IsDir(item))
                 {
                     // 文件夹处理
                     var dir = new DirectoryInfo(item);
                     // 检查忽略
-                    if (!_ignoreDirList.Contains(dir.Name) && !_ignoreStringList.Exists(igString => dir.Name.Contains(igString)))
+                    if (!_ignoreDirList.Contains(dir.Name) && !_ignoreDirNameContainList.Exists(igString => dir.Name.Contains(igString)))
                     {
                         // 只有 home path 记录子目录, 生成子目录时不需要.
                         if (isHome)
@@ -138,9 +132,7 @@ namespace DocsifyBuildSidebar
             // 生成home目录的 侧边栏
             var homeData = Entry(_homePath, true);
 
-            // Console.WriteLine($"home menu :\n{homeData}");
             WriteDataToFile(_homePath, homeData);
-            //Utils.WriteLogMessage("[home] Done!");
 
             // 生成 子目录的 侧边栏
             foreach (var item in _includeDirList)
@@ -158,9 +150,8 @@ namespace DocsifyBuildSidebar
                 {
                     includeData = $"- [返回上一级 [{parentDir.Name}]]({parentDir.GetDirRelativePath()})\n" + includeData;
                 }
-                WriteDataToFile(item, includeData);
-                //Console.WriteLine($"child menu :\n{includeData}");
 
+                WriteDataToFile(item, includeData);
             }
         }
 
@@ -178,23 +169,32 @@ namespace DocsifyBuildSidebar
             File.WriteAllText(readmePath, data);
         }
 
+
+
         private static void Init()
         {
             AnsiConsole.MarkupLine("[yellow]Start ReadConfig...[/]");
-            var configJson = new JsonConfigHelper(_jsonConfigPath);
 
-            var homePath = configJson["HomePath"];
+            // 读取 Config.json
+            var fileData = File.ReadAllText(_jsonConfigPath);
 
-            if (string.IsNullOrWhiteSpace(homePath))
+            // json 转为对象
+            var config = JsonSerializer.Deserialize<MyConfigModel>(fileData);
+
+            if (string.IsNullOrWhiteSpace(config.HomePath))
             {
                 throw new Exception("Config.json HomePath 获取失败");
             }
-            _homePath = homePath;
+
+            // 将 Config.json 内容保存到全局变量中
+            _homePath = config.HomePath;
+            _ignoreFileList.AddRange(config.IgnoreFile);
+            _ignoreDirList.AddRange(config.IgnoreDir);
+            _ignoreDirNameContainList.AddRange(config.IgnoreDirNameContain);
 
             Utils.WriteLogMessage("HomePath: " + _homePath);
             AnsiConsole.MarkupLine("[yellow]ReadConfig Done![/]");
             Utils.WriteDivider();
-
         }
 
         private static void ShowWarnFileList()
@@ -210,16 +210,22 @@ namespace DocsifyBuildSidebar
                 AnsiConsole.MarkupLine($"[yellow]{item}[/]");
             }
         }
+
         private static void Main(string[] args)
         {
             try
             {
                 Utils.ShowLogo();
                 AnsiConsole.MarkupLine("[yellow]Initializing sidebar[/]...");
+
+                // 初始化配置项
                 Init();
+
+                // 开始构建
                 Build();
-                
+
                 ShowWarnFileList();
+
                 Utils.WriteDivider();
 
                 AnsiConsole.MarkupLine($"○ [green]{_homePath} ->>> Done![/]");
@@ -232,6 +238,6 @@ namespace DocsifyBuildSidebar
                 Console.ReadLine();
             }
         }
-
     }
+
 }
