@@ -132,7 +132,6 @@ namespace DocsifyBuildSidebar
         /// </summary>
         public static void ShowLogo()
         {
-
             //Console.SetWindowSize(150, Console.WindowHeight);
 
             var logo = new FigletText("build sidebar")
@@ -140,9 +139,11 @@ namespace DocsifyBuildSidebar
                 .Color(Color.Yellow);
             AnsiConsole.Write(logo);
 
-            var rule = new Rule("[red]build sidebar for c#[/]");
-            rule.Alignment = Justify.Center;
-            rule.Style = Style.Parse("red dim");
+            var rule = new Rule("[red]build sidebar for c#[/]")
+            {
+                Alignment = Justify.Center,
+                Style = Style.Parse("red dim")
+            };
 
             AnsiConsole.Write(rule);
         }

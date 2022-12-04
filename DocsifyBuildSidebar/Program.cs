@@ -48,16 +48,19 @@ namespace DocsifyBuildSidebar
             var rootDir = new DirectoryInfo(rootPath);
             var sidebarData = string.Empty;
 
-            // 生成目录文件夹
-            sidebarData += $"{Utils.GenerateSpace(_level)}- [{rootDir.Name}]({Utils.ReplaceSpace(rootDir.GetDirRelativePath())})\n";
-            _level++;
-
             // 首页 校正数据
             if (rootPath == _homePath)
             {
                 sidebarData = string.Empty;
                 _level = 0;
             }
+            else
+            {
+                // 生成目录文件夹
+                sidebarData += $"{Utils.GenerateSpace(_level)}- [{rootDir.Name}]({Utils.ReplaceSpace(rootDir.GetDirRelativePath())})\n";
+                _level++;
+            }
+
             // 获取目录中所有的文件夹和文件
             var fileList = Directory.EnumerateFileSystemEntries(rootPath).ToList();
 
@@ -76,7 +79,9 @@ namespace DocsifyBuildSidebar
                     sortDirList.Add(item);
                 }
             }
+
             fileList.Clear();
+
             // 先放入 文件夹, 再放入 文件
             fileList.AddRange(sortDirList);
             fileList.AddRange(sortFileList);
@@ -106,6 +111,7 @@ namespace DocsifyBuildSidebar
                 {
                     // 文件夹处理
                     var dir = new DirectoryInfo(item);
+
                     // 检查忽略
                     if (!_ignoreDirList.Contains(dir.Name) && !_ignoreDirNameContainList.Exists(igString => dir.Name.Contains(igString)))
                     {
@@ -116,7 +122,9 @@ namespace DocsifyBuildSidebar
                         }
 
                         sidebarData += Entry(dir.FullName, isHome);
+
                         Utils.WriteLogMessage($"[{dir.Name}] --- Done!");
+
                         _level--;
                     }
                 }
@@ -161,8 +169,8 @@ namespace DocsifyBuildSidebar
         /// <param name="data"></param>
         private static void WriteDataToFile(string homePath, string data)
         {
-            string sidebarPath = Path.Combine(homePath, _sidebarFileName);
-            string readmePath = Path.Combine(homePath, _readmeFileName);
+            var sidebarPath = Path.Combine(homePath, _sidebarFileName);
+            var readmePath = Path.Combine(homePath, _readmeFileName);
 
             File.WriteAllText(sidebarPath, data);
             File.WriteAllText(readmePath, data);
@@ -190,7 +198,9 @@ namespace DocsifyBuildSidebar
             _ignoreDirNameContainList.AddRange(config.IgnoreDirNameContain);
 
             Utils.WriteLogMessage("HomePath: " + _homePath);
+
             AnsiConsole.MarkupLine("[yellow]ReadConfig Done![/]");
+
             Utils.WriteDivider();
         }
 
@@ -199,7 +209,7 @@ namespace DocsifyBuildSidebar
             if (_warnFileList.Count > 0)
             {
                 Utils.WriteDivider();
-                AnsiConsole.MarkupLine($"[yellow]Excluded files:[/]");
+                AnsiConsole.MarkupLine("[yellow]Excluded files:[/]");
                 Console.WriteLine("-");
             }
             foreach (var item in _warnFileList)
@@ -213,6 +223,7 @@ namespace DocsifyBuildSidebar
             try
             {
                 Utils.ShowLogo();
+
                 AnsiConsole.MarkupLine("[yellow]Initializing sidebar[/]...");
 
                 // 初始化配置项
@@ -226,7 +237,9 @@ namespace DocsifyBuildSidebar
                 Utils.WriteDivider();
 
                 AnsiConsole.MarkupLine($"○ [green]{_homePath} ->>> Done![/]");
+
                 Utils.WriteDivider();
+
                 Console.ReadLine();
             }
             catch (Exception e)
