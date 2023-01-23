@@ -14,14 +14,14 @@
 
 
 # 网站的部署
-- Vercel (免费全自动部署): 直接关联github私有/公有仓库,nodejs那几个命令不用填, 直接部署即可,3秒即可成功.每次提交代码,Vercel都会自动部署.
+- ⭐ Vercel (免费全自动部署): 直接关联github私有/公有仓库,nodejs那几个命令不用填, 直接部署即可,3秒即可成功.每次提交代码,Vercel都会自动部署.
+- ⭐ Netlify : 同 Vercel, 可作为 Vercel 的替代.
 - Github Page: 国内访问太慢了.
-- Gitee Pages (码云) : 比较辣鸡,白嫖党需要每次手动点击更新. 而且还有违禁违规内容审查, 我笔记里的汇编代码 被认为是违规内容??? 不让我部署.总不能把笔记删掉吧,后来就一直没有部署.都是本地去查看,再后来我发现了Vercel, 用过后只想说 Vercel YYDS !
+- ☠ Gitee Pages (码云) : 比较辣鸡,白嫖党需要每次手动点击更新. 而且还有违禁违规内容审查, 有些正常的内容都被误报. 还要实名认证,需要上传手持身份证的照片
 
 ---
 还没使用过的平台
-- GitCode : CSDN旗下的代码托管平台 https://gitcode.net/
-- Netlify : 国外的一个平台 https://www.netlify.com/
+- GitCode : CSDN 旗下的代码托管平台 https://gitcode.net/
 - Coding Pages : 腾讯旗下的一个代码托管平台 https://coding.net/
 
 #  使用方法:
