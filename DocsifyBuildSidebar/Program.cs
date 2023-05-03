@@ -36,6 +36,12 @@ int _level = 0;
 /// </summary>
 List<string> _warnFileList = new();
 
+/// <summary>
+/// 不生成 README.md
+/// </summary>
+
+bool _disableGenerateReadmeFile = false;
+
 try
 {
     Utils.ShowLogo();
@@ -187,10 +193,13 @@ void Build()
 void WriteDataToFile(string homePath, string data)
 {
     var sidebarPath = Path.Combine(homePath, _sidebarFileName);
-    var readmePath = Path.Combine(homePath, _readmeFileName);
-
     File.WriteAllText(sidebarPath, data);
-    File.WriteAllText(readmePath, data);
+
+    if (_disableGenerateReadmeFile == false)
+    {
+        var readmePath = Path.Combine(homePath, _readmeFileName);
+        File.WriteAllText(readmePath, data);
+    }
 }
 
 void Init()
@@ -213,6 +222,7 @@ void Init()
     _ignoreFileList.AddRange(config.IgnoreFile);
     _ignoreDirList.AddRange(config.IgnoreDir);
     _ignoreDirNameContainList.AddRange(config.IgnoreDirNameContain);
+    _disableGenerateReadmeFile = config.DisableGenerateReadmeFile;
 
     Utils.WriteLogMessage("HomePath: " + _homePath);
 

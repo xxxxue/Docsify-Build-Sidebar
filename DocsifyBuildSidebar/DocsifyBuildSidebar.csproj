@@ -13,7 +13,7 @@
 
 	<ItemGroup>
 		<None Update="Config\Config.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 

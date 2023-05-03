@@ -41,12 +41,13 @@
 
 # Config.json 配置项
 
-| 名称                 | 说明                                        | 例子                       |
-| -------------------- | ------------------------------------------- | -------------------------- |
-| HomePath             | Docsify 项目的根目录                        | `E:\\Work\\coding\\xxxue`  |
-| IgnoreFile           | 忽略的文件 (判断规则: 相等)                 | `Readme.md`                |
-| IgnoreDir            | 忽略的目录 (判断规则: 相等)                 | `.git`                     |
-| IgnoreDirNameContain | 忽略的目录 (判断规则: 目录名称任意位置包含) | `.assets` 匹配 `*.assets*` |
+| 名称                      | 说明                                        | 例子                                    |
+| ------------------------- | ------------------------------------------- | --------------------------------------- |
+| HomePath                  | Docsify 项目的根目录                        | `E:\\Work\\coding\\xxxue`               |
+| IgnoreFile                | 忽略的文件 (判断规则: 相等)                 | `Readme.md`                             |
+| IgnoreDir                 | 忽略的目录 (判断规则: 相等)                 | `.git`                                  |
+| IgnoreDirNameContain      | 忽略的目录 (判断规则: 目录名称任意位置包含) | `.assets` 匹配 `*.assets*`              |
+| DisableGenerateReadmeFile | 禁用 "生成 Readme.md 文件"  (默认生成)      | `true` (不生成) / `false`(生成)(默认值) |
 
 
 
