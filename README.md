@@ -37,6 +37,7 @@
 
 以后就不用每次都去找 exe 了
 
+![image](https://github.com/xxxxue/Docsify-Build-Sidebar/assets/32764266/db131d3a-1caa-4ce9-a86f-a4622912d129)
 
 
 # Config.json 配置项
