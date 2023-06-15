@@ -51,7 +51,7 @@ public static class Utils
     /// <returns></returns>
     public static string ReplaceSpace(string data)
     {
-        return Regex.Replace(data, @"/\s{1,1}/g", "%20");
+        return Regex.Replace(data, @"\s{1,1}", "%20");
     }
 
     /// <summary>
@@ -61,7 +61,7 @@ public static class Utils
     /// <returns></returns>
     public static string GetFileNameWithoutExtension(this FileInfo file)
     {
-        return file.Name.Replace(file.Extension, "");
+        return Path.GetFileNameWithoutExtension(file.Name);
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public static class Utils
     /// <returns></returns>
     public static string GetFileRelativePath(this FileInfo file)
     {
-        return file.FullName.Replace(GetCurrentDirectory(), "").TrimStart('\\').Replace("\\", "/");
+       return file.FullName.Replace(GetCurrentDirectory(), "").TrimStart('\\').Replace("\\", "/");
     }
 
     /// <summary>
