@@ -58,7 +58,7 @@ try
 
     Utils.WriteDivider();
 
-    AnsiConsole.MarkupLine($"○ [green]{_homePath} ->>> Done![/]");
+    AnsiConsole.MarkupLine("○ [green]{0} ->>> Done![/]",Markup.Escape(_homePath));
 
     Utils.WriteDivider();
 
@@ -241,6 +241,6 @@ void ShowWarnFileList()
     }
     foreach (var item in _warnFileList)
     {
-        AnsiConsole.MarkupLine($"[yellow]{item}[/]");
+        AnsiConsole.MarkupLine("[yellow]{0}[/]",Markup.Escape(item));
     }
 }
