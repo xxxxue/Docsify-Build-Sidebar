@@ -1,12 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 using Spectre.Console;
 
 namespace DocsifyBuildSidebar;
 
-public static class Utils
+public static partial class Utils
 {
     /// <summary>
     /// 判断是否是文件
@@ -44,6 +42,9 @@ public static class Utils
         return res;
     }
 
+    [GeneratedRegex(@"\s{1,1}")]
+    private static partial Regex MyRegex();
+
     /// <summary>
     /// 替换空格为%20
     /// </summary>
@@ -51,7 +52,7 @@ public static class Utils
     /// <returns></returns>
     public static string ReplaceSpace(string data)
     {
-        return Regex.Replace(data, @"\s{1,1}", "%20");
+        return MyRegex().Replace(data, "%20");
     }
 
     /// <summary>

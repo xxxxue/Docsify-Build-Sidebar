@@ -6,25 +6,24 @@ using DocsifyBuildSidebar;
 string _homePath = string.Empty;
 string _sidebarFileName = "_sidebar.md";
 string _readmeFileName = "README.md";
-string _jsonConfigPath = "./Config/Config.json";
+string _jsonConfigPath = "./config.json";
 
 // 规则: 全名相等
-List<string> _ignoreFileList = new()
-        {
+List<string> _ignoreFileList = [
             "_sidebar.md", // 侧边栏文件
             "README.md" //侧边栏文件
-        };
+];
 
 // 规则: 全名相等
-List<string> _ignoreDirList = new();
+List<string> _ignoreDirList = [];
 
 // 规则: 名称包含
-List<string> _ignoreDirNameContainList = new();
+List<string> _ignoreDirNameContainList = [];
 
 /// <summary>
 /// 记录包含的子目录, 在这些目录中生成侧边栏文件
 /// </summary>
-List<string> _includeDirList = new();
+List<string> _includeDirList = [];
 
 /// <summary>
 /// 文档目录级别
@@ -34,19 +33,16 @@ int _level = 0;
 /// <summary>
 /// 不符合规则的文件 (发出警告)
 /// </summary>
-List<string> _warnFileList = new();
+List<string> _warnFileList = [];
 
 /// <summary>
 /// 不生成 README.md
 /// </summary>
-
 bool _disableGenerateReadmeFile = false;
 
 try
 {
     Utils.ShowLogo();
-
-    AnsiConsole.MarkupLine("[yellow]Initializing sidebar[/]...");
 
     // 初始化配置项
     Init();
@@ -58,18 +54,18 @@ try
 
     Utils.WriteDivider();
 
-    AnsiConsole.MarkupLine("○ [green]{0} ->>> Done![/]",Markup.Escape(_homePath));
+    AnsiConsole.MarkupLine("○ [green]{0} ->>> Done![/]", Markup.Escape(_homePath));
 
     Utils.WriteDivider();
-
-    Console.ReadLine();
+    Console.WriteLine("Press any key to exit.");
+    Console.ReadKey();
 }
 catch (Exception e)
 {
-    AnsiConsole.WriteException(e);
-    Console.ReadLine();
+    AnsiConsole.WriteLine(e.ToString());
+    Console.WriteLine("Press any key to exit.");
+    Console.ReadKey();
 }
-
 
 string Entry(string rootPath, bool isHome = false)
 {
@@ -210,11 +206,11 @@ void Init()
     var fileData = File.ReadAllText(_jsonConfigPath);
 
     // json 转为对象
-    var config = JsonSerializer.Deserialize<MyConfigModel>(fileData);
+    var config = JsonSerializer.Deserialize(fileData, SourceGenerationContext.Default.MyConfigModel);
 
     if (string.IsNullOrWhiteSpace(config.HomePath))
     {
-        throw new Exception("Config.json HomePath 获取失败");
+        throw new Exception("config.json HomePath is null");
     }
 
     // 将 Config.json 内容保存到全局变量中
@@ -241,6 +237,6 @@ void ShowWarnFileList()
     }
     foreach (var item in _warnFileList)
     {
-        AnsiConsole.MarkupLine("[yellow]{0}[/]",Markup.Escape(item));
+        AnsiConsole.MarkupLine("[yellow]{0}[/]", Markup.Escape(item));
     }
 }

@@ -6,13 +6,13 @@
 
 ## 使用方法
 
-- 在 github 页面右侧的 "Releases" 中下载编译好的软件
+- 在 Github 页面右侧的 "Releases" 中下载编译好的软件
 - 修改 Config 中的 `HomePath` 为 `自己电脑上的目标根目录`
 - 双击 exe 执行
 
 ## 小技巧
 
-可以右键单击 exe ,创建一个 快捷方式, 
+可以右键单击 exe, 创建快捷方式,
 
 把这个 `快捷方式` 剪切到自己的项目根目录,
 
@@ -20,6 +20,16 @@
 
 ![image](https://github.com/xxxxue/Docsify-Build-Sidebar/assets/32764266/db131d3a-1caa-4ce9-a86f-a4622912d129)
 
+```
+├─ DocsifyBuildSidebar
+│   ├─Config
+│   │  └─Config.json
+│   └─DocsifyBuildSidebar.exe
+└─ MyBlog
+    ├─.git
+    ├─index.html
+    └─DocsifyBuildSidebar.exe - 快捷方式    
+```
 
 ## Config.json 配置项
 
@@ -30,7 +40,6 @@
 | IgnoreDir                 | 忽略的目录 (判断规则: 相等)                 | `.git`                                  |
 | IgnoreDirNameContain      | 忽略的目录 (判断规则: 目录名称任意位置包含) | `.assets` 匹配 `*.assets*`              |
 | DisableGenerateReadmeFile | 禁用 "生成 Readme.md 文件"  (默认生成)      | `true` (不生成) / `false`(生成)(默认值) |
-
 
 ## 界面效果
 
@@ -83,6 +92,12 @@
 
 ## index.html 模版
 
+追求稳定, 可以把 css 与 js 文件保存到本地, 防止在国内有时候 cdn 连不上
+
+比如 同级的 `static` 目录
+
+html 中就改为 `"static/docsify-sidebar-collapse.min.js"`
+
 ```html
 <!-- index.html -->
 
@@ -92,10 +107,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/vue.css" />
 
     <!-- 文件夹样式 -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
     <!-- 箭头样式 -->
     <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> -->
   </head>
@@ -161,13 +176,13 @@
     <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>  
 
     <!-- 代码高亮  https://cdn.jsdelivr.net/npm/prismjs@1/components/ -->
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>   
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cmake.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>     
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-docker.min.js"></script>  
-    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>   
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-cmake.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>     
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-docker.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>  
 
     <!-- 多tab支持 -->
     <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1/dist/docsify-tabs.min.js"></script>
@@ -197,9 +212,46 @@
     <!-- 页面右侧 TOC -->
     <script src="https://cdn.jsdelivr.net/npm/docsify-plugin-toc@1.1.0/dist/docsify-plugin-toc.min.js"></script>
 
-      <!-- emoji -->
-      <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+    <!-- emoji -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
   </body>
 </html>
-
 ```
+
+## 其他脚本
+
+`安装docsify.bat`
+
+```bat
+@echo off
+npm i docsify-cli -g
+```
+
+`运行docsify.bat`
+
+```bat
+@echo off
+docsify serve ./
+```
+
+`删除生成的 md 文件.ps1`
+
+```powershell
+# PowerShell 递归删除指定文件
+
+# 定义排除目录列表，支持动态添加, 
+# 使用逗号分隔,比如: '.git', 'MoreDirName'
+$excludeDirs = @('.git')
+# 要删除的文件
+Get-ChildItem -Recurse -File -Include "_sidebar.md", "README.md" |
+Where-Object {
+    $path = $_.DirectoryName
+    -not ($excludeDirs | Where-Object { $path -like "*\$_" })
+} | 
+Remove-Item -Force
+Pause
+```
+
+## 交流
+
+[https://github.com/xxxxue/sponsors](https://github.com/xxxxue/sponsors)

@@ -1,0 +1,18 @@
+﻿{
+  // docsify 项目根目录
+  "HomePath": "D:/Work/BlogProject/blog",
+  // 不生成 README 文件
+  "DisableGenerateReadmeFile": false,
+  // 忽略的文件名称 (相等)
+  "IgnoreFile": [
+
+  ],
+  // 忽略的目录 (相等)
+  "IgnoreDir": [
+    ".git"
+  ],
+  // 忽略的目录 (包含关键字)
+  "IgnoreDirNameContain": [
+    ".assets"
+  ]
+}
